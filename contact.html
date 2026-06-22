@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Contact Us - Kitsap Aviation</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" type="image/png" href="img/kitsap-aviation-icon.jpg">
+  </head>
+
+  <body>
+    <nav>
+      <div class="logo">
+        <a href="index.html" class="logo-link">
+          <img class="logo-icon" src="img/kitsap-aviation-icon.jpg" alt="icon">
+          <span>Kitsap Aviation</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html#instructors">Instructors</a></li>
+        <li><a href="index.html#programs">Programs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="contact-page">
+      <div class="contact-layout">
+        <div class="contact-info">
+          <div class="section-label">Contact Us</div>
+          <h1>Training Inquiry</h1>
+          <p class="contact-intro">We welcome your interest in flight training with Kitsap Aviation. Please submit the inquiry form and a member of our team will respond within one business day.</p>
+
+          <div class="contact-details">
+            <h2>Office Information</h2>
+            <dl>
+              <div class="contact-detail">
+                <dt>Phone</dt>
+                <dd><a href="tel:+13607200904">+1 (360) 720-0904</a></dd>
+              </div>
+              <div class="contact-detail">
+                <dt>Email</dt>
+                <dd><a href="mailto:flykitsapaviation@gmail.com">flykitsapaviation@gmail.com</a></dd>
+              </div>
+              <div class="contact-detail">
+                <dt>Location</dt>
+                <dd>Bremerton National Airport (KPWT)</dd>
+              </div>
+              <div class="contact-detail">
+                <dt>Office Hours</dt>
+                <dd>Monday - Sunday, 9:00 AM - 5:00 PM</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="contact-form-panel">
+          <h2>Inquiry Form</h2>
+          <p class="contact-form-note">Fields marked with an asterisk (*) are required. Submitting will open your email app with a pre-filled message.</p>
+
+          <form class="contact-form" action="#" method="post">
+            <div class="form-row">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="First and last name" autocomplete="name">
+            </div>
+
+            <div class="form-row">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="name@email.com" autocomplete="email">
+            </div>
+
+            <div class="form-row">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 (360) 000-0000" autocomplete="tel">
+            </div>
+
+            <div class="form-row">
+              <label for="interest">Program of Interest *</label>
+              <select id="interest" name="interest" required autocomplete="off">
+                <option value="Discovery Flight">Discovery Flight</option>
+                <option value="Private Pilot">Private Pilot Certificate</option>
+                <option value="Instrument Rating">Instrument Rating</option>
+                <option value="Commercial Pilot">Commercial Pilot Certificate</option>
+                <option value="CFI / CFII">Certified Flight Instructor (CFI / CFII)</option>
+                <option value="General Inquiry">General Inquiry</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="message">Additional Information</label>
+              <textarea id="message" name="message" rows="4" placeholder="Please include any relevant details regarding your training goals or questions."></textarea>
+            </div>
+
+            <button class="btn-primary btn-submit" type="submit">Submit Inquiry</button>
+          </form>
+
+          <p class="form-success" id="form-success" hidden>Your email app should open with your inquiry ready to send. Click send in your email client to complete your submission.</p>
+          <p class="form-reset" id="form-reset" hidden><a href="contact.html">Submit another inquiry</a></p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img class="logo-icon" src="img/kitsap-aviation-icon.jpg" alt="icon">
+            <span>Kitsap Aviation</span>
+          </div>
+          <p>Based at Bremerton National Airport (KPWT)</p>
+          <a href="https://www.instagram.com/flykitsapaviation" class="ig-link">
+            <span class="ig-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="rgba(240,237,232,0.6)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.8" fill="rgba(240,237,232,0.6)" stroke="none"/>
+              </svg>
+            </span>
+            @flykitsapaviation
+          </a>
+        </div>
+        <div class="footer-divider" aria-hidden="true"></div>
+        <div class="footer-col">
+          <h4>Contact Information</h4>
+          <dl class="footer-contact-list">
+            <div class="footer-contact-item">
+              <dt>Phone</dt>
+              <dd><a href="tel:+13607200904">+1 (360) 720-0904</a></dd>
+            </div>
+            <div class="footer-contact-item">
+              <dt>Email</dt>
+              <dd><a href="mailto:flykitsapaviation@gmail.com">flykitsapaviation@gmail.com</a></dd>
+            </div>
+            <div class="footer-contact-item">
+              <dt>Location</dt>
+              <dd>Bremerton National Airport (KPWT)</dd>
+            </div>
+            <div class="footer-contact-item">
+              <dt>Office Hours</dt>
+              <dd>Monday - Sunday, 9:00 AM - 5:00 PM</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Kitsap Aviation. All rights reserved.</span>
+      </div>
+    </footer>
+
+    <script>
+      const form = document.querySelector('.contact-form');
+      const formSuccess = document.getElementById('form-success');
+      const formReset = document.getElementById('form-reset');
+      const formNote = document.querySelector('.contact-form-note');
+      const formTitle = document.querySelector('.contact-form-panel h2');
+      const contactEmail = 'flykitsapaviation@gmail.com';
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const interest = document.getElementById('interest').value;
+        const message = document.getElementById('message').value.trim();
+
+        const subject = encodeURIComponent('New Training Inquiry - Kitsap Aviation');
+        const body = encodeURIComponent(
+          'Full Name: ' + name + '\n' +
+          'Email: ' + email + '\n' +
+          'Phone Number: ' + (phone || 'Not provided') + '\n' +
+          'Program of Interest: ' + interest + '\n\n' +
+          'Additional Information:\n' + (message || 'None provided')
+        );
+
+        window.location.href = 'mailto:' + contactEmail + '?subject=' + subject + '&body=' + body;
+
+        form.hidden = true;
+        formNote.hidden = true;
+        formTitle.hidden = true;
+        formSuccess.hidden = false;
+        formReset.hidden = false;
+      });
+
+      const interest = new URLSearchParams(window.location.search).get('interest');
+      if (interest) {
+        const select = document.getElementById('interest');
+        const normalizedInterest = interest.replace(/\+/g, ' ');
+        for (const option of select.options) {
+          if (option.value === normalizedInterest) {
+            option.selected = true;
+            break;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
