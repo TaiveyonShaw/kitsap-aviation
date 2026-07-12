@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Contact Us - Kitsap Aviation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="icon" type="image/png" href="img/kitsap-aviation-icon.jpg">
   </head>
@@ -54,9 +58,15 @@
 
         <div class="contact-form-panel">
           <h2>Inquiry Form</h2>
-          <p class="contact-form-note">Fields marked with an asterisk (*) are required. Submitting will open your email app with a pre-filled message.</p>
+          <p class="contact-form-note">Fields marked with an asterisk (*) are required.</p>
 
-          <form class="contact-form" action="#" method="post">
+          <!-- Replace YOUR_ACCESS_KEY_HERE with your key from https://web3forms.com -->
+          <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+            <input type="hidden" name="subject" value="New Training Inquiry - Kitsap Aviation">
+            <input type="hidden" name="from_name" value="Kitsap Aviation Website">
+            <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off">
+
             <div class="form-row">
               <label for="name">Full Name *</label>
               <input type="text" id="name" name="name" required placeholder="First and last name" autocomplete="name">
@@ -74,7 +84,7 @@
 
             <div class="form-row">
               <label for="interest">Program of Interest *</label>
-              <select id="interest" name="interest" required autocomplete="off">
+              <select id="interest" name="Program of Interest" required autocomplete="off">
                 <option value="Discovery Flight">Discovery Flight</option>
                 <option value="Private Pilot">Private Pilot Certificate</option>
                 <option value="Instrument Rating">Instrument Rating</option>
@@ -92,7 +102,8 @@
             <button class="btn-primary btn-submit" type="submit">Submit Inquiry</button>
           </form>
 
-          <p class="form-success" id="form-success" hidden>Your email app should open with your inquiry ready to send. Click send in your email client to complete your submission.</p>
+          <p class="form-error" id="form-error" hidden>Something went wrong. Please try again or email us at <a href="mailto:flykitsapaviation@gmail.com">flykitsapaviation@gmail.com</a>.</p>
+          <p class="form-success" id="form-success" hidden>Thank you for your inquiry. A member of our team will contact you shortly.</p>
           <p class="form-reset" id="form-reset" hidden><a href="contact.html">Submit another inquiry</a></p>
         </div>
       </div>
@@ -148,40 +159,53 @@
     <script>
       const form = document.querySelector('.contact-form');
       const formSuccess = document.getElementById('form-success');
+      const formError = document.getElementById('form-error');
       const formReset = document.getElementById('form-reset');
       const formNote = document.querySelector('.contact-form-note');
       const formTitle = document.querySelector('.contact-form-panel h2');
-      const contactEmail = 'flykitsapaviation@gmail.com';
+      const submitButton = form.querySelector('.btn-submit');
 
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const interest = document.getElementById('interest').value;
-        const message = document.getElementById('message').value.trim();
-
-        const subject = encodeURIComponent('New Training Inquiry - Kitsap Aviation');
-        const body = encodeURIComponent(
-          'Full Name: ' + name + '\n' +
-          'Email: ' + email + '\n' +
-          'Phone Number: ' + (phone || 'Not provided') + '\n' +
-          'Program of Interest: ' + interest + '\n\n' +
-          'Additional Information:\n' + (message || 'None provided')
-        );
-
-        window.location.href = 'mailto:' + contactEmail + '?subject=' + subject + '&body=' + body;
-
+      function showSuccess() {
         form.hidden = true;
         formNote.hidden = true;
         formTitle.hidden = true;
+        formError.hidden = true;
         formSuccess.hidden = false;
         formReset.hidden = false;
+      }
+
+      if (new URLSearchParams(window.location.search).get('sent') === '1') {
+        showSuccess();
+      }
+
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending…';
+        formError.hidden = true;
+
+        try {
+          const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: new FormData(form)
+          });
+          const result = await response.json();
+
+          if (result.success) {
+            showSuccess();
+          } else {
+            throw new Error(result.message || 'Submission failed');
+          }
+        } catch (error) {
+          formError.hidden = false;
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit Inquiry';
+        }
       });
 
       const interest = new URLSearchParams(window.location.search).get('interest');
-      if (interest) {
+      if (interest && !new URLSearchParams(window.location.search).get('sent')) {
         const select = document.getElementById('interest');
         const normalizedInterest = interest.replace(/\+/g, ' ');
         for (const option of select.options) {

@@ -2,7 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kitsap Aviation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="img/main_bg.webp" type="image/webp">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="icon" type="image/png" href="img/kitsap-aviation-icon.jpg">
   </head>
@@ -77,22 +82,78 @@
         <div class="section-title">Fly with the <em>best</em></div>
         <p class="section-sub">Our team of flight instructors has over 25 years of experience that is all dedicated to your success.</p>
         <div class="instructors-grid">
-          <div class="instructor-card">
-            <img class="instructor-photo" src="img/instructor1.jpeg" alt="Kris Jones">
+          <button type="button" class="instructor-card" data-instructor="kris" aria-haspopup="dialog" aria-controls="instructor-kris">
+            <picture>
+              <source srcset="img/instructor1.webp" type="image/webp">
+              <img class="instructor-photo" src="img/instructor1.jpeg" alt="" width="600" height="800" loading="lazy" decoding="async">
+            </picture>
             <div class="instructor-name">Kris Jones</div>
             <div class="instructor-role">Owner - Chief Flight Instructor</div>
             <div class="instructor-certs">CFI / CFII / MEI</div>
             <div class="instructor-hours">ATP - MEL - B - 737</div>
-          </div>
-          <div class="instructor-card">
-            <img class="instructor-photo" src="img/instructor2.jpeg" alt="Dylan Michael">
+            <span class="instructor-view">View bio</span>
+          </button>
+          <button type="button" class="instructor-card" data-instructor="dylan" aria-haspopup="dialog" aria-controls="instructor-dylan">
+            <picture>
+              <source srcset="img/instructor2.webp" type="image/webp">
+              <img class="instructor-photo" src="img/instructor2.jpeg" alt="" width="600" height="800" loading="lazy" decoding="async">
+            </picture>
             <div class="instructor-name">Dylan Michael</div>
             <div class="instructor-role">Flight Instructor</div>
             <div class="instructor-certs">CFI / CFII</div>
-          </div>
+            <span class="instructor-view">View bio</span>
+          </button>
         </div>
       </div>
     </div>
+
+    <dialog class="instructor-modal" id="instructor-kris" aria-labelledby="instructor-kris-name">
+      <div class="instructor-modal-panel">
+        <button type="button" class="instructor-modal-close" aria-label="Close">&times;</button>
+        <div class="instructor-modal-header">
+          <picture>
+            <source srcset="img/instructor1.webp" type="image/webp">
+            <img class="instructor-modal-photo" src="img/instructor1.jpeg" alt="Kris Jones" width="600" height="800" loading="lazy" decoding="async">
+          </picture>
+          <div>
+            <h3 id="instructor-kris-name" class="instructor-modal-name">Kris Jones</h3>
+            <p class="instructor-modal-role">Owner - Chief Flight Instructor</p>
+            <p class="instructor-modal-certs">CFI / CFII / MEI · ATP - MEL - B-737</p>
+          </div>
+        </div>
+        <div class="instructor-modal-bio">
+          <p>Kris Jones is a U.S. Navy officer, aviation leader, flight instructor, and entrepreneur whose career has been defined by service, leadership, and a lifelong passion for aviation.</p>
+          <p>Originally from Los Angeles, California, Kris has served on active duty in the United States Navy since 2004. Throughout his military career, he has completed operational deployments around the world in support of freedom, maritime security, and U.S. national interests. He served for 14 years aboard the P-3C Orion and three years aboard the P-8A Poseidon, supporting some of the Navy's most demanding maritime patrol and anti-submarine warfare missions. During those assignments, he played a key operational role in tracking more than 50 adversary submarine contacts. He has also served aboard the aircraft carriers USS Kitty Hawk (CV-63) and currently USS Ronald Reagan (CVN-76), where he continues to serve today.</p>
+          <p>Kris's passion for aviation began at just five years old when he told his parents he wanted to become a pilot. That childhood dream eventually became reality. He earned his Private Pilot Certificate shortly after high school and has since attained some of the aviation industry's highest certifications, including Certified Flight Instructor (CFI), Certified Flight Instructor–Instrument (CFII), Certified Multi-Engine Instructor (MEI), and Airline Transport Pilot (ATP) certification with a Boeing 737 Next Generation type rating. Today, he has accumulated more than 2,500 hours of flight time and is dedicated to training and mentoring the next generation of aviators.</p>
+          <p>In addition to his military service, Kris serves as Chief Flight Instructor for the Kitsap Aviation Squadron, the oldest continuously operating flying club in the United States. He is also the Scholarship Coordinator for the Bremerton Pilots Association and the founder and owner of Kitsap Aviation, a flight school based at Bremerton National Airport dedicated to making aviation more accessible through high-quality flight training, scholarships, and youth aviation programs.</p>
+          <p>Kris holds a Bachelor of Arts in Liberal Arts from Columbia College and a Master of Science in Organizational Leadership from the University of Massachusetts.</p>
+          <p>Whether serving his country, mentoring future pilots, or introducing young people to the world of aviation, Kris is driven by one mission: to inspire others to pursue ambitious goals and demonstrate that with dedication, discipline, and perseverance, even childhood dreams can become reality.</p>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="instructor-modal" id="instructor-dylan" aria-labelledby="instructor-dylan-name">
+      <div class="instructor-modal-panel">
+        <button type="button" class="instructor-modal-close" aria-label="Close">&times;</button>
+        <div class="instructor-modal-header">
+          <picture>
+            <source srcset="img/instructor2.webp" type="image/webp">
+            <img class="instructor-modal-photo" src="img/instructor2.jpeg" alt="Dylan Michael" width="600" height="800" loading="lazy" decoding="async">
+          </picture>
+          <div>
+            <h3 id="instructor-dylan-name" class="instructor-modal-name">Dylan Michael</h3>
+            <p class="instructor-modal-role">Flight Instructor</p>
+            <p class="instructor-modal-certs">CFI / CFII</p>
+          </div>
+        </div>
+        <div class="instructor-modal-bio">
+          <p>I grew up in the Bremerton/Silverdale area and graduated from Klahowya Secondary School in 2023. Shortly after graduating, I was accepted into the Alaska/Horizon Ascend Pilot Academy.</p>
+          <p>The following fall, I moved to Bend, Oregon, where I earned all of my pilot certificates and ratings, from my Private Pilot License through my Certified Flight Instructor Instrument (CFII) rating.</p>
+          <p>After completing my training, I returned home and joined the team at Kitsap Aviation. Outside of flying, I enjoy golfing, fishing, and watching sports.</p>
+          <p>My long-term goal in aviation is to one day become a Boeing 787 captain for Alaska Airlines.</p>
+        </div>
+      </div>
+    </dialog>
 
     <div class="cta-section">
       <div class="section-label">Ready to begin?</div>
@@ -149,5 +210,31 @@
         <span>© 2026 Kitsap Aviation. All rights reserved.</span>
       </div>
     </footer>
+
+    <script>
+      (function () {
+        var cards = document.querySelectorAll('[data-instructor]');
+        var modals = document.querySelectorAll('.instructor-modal');
+
+        cards.forEach(function (card) {
+          card.addEventListener('click', function () {
+            var modal = document.getElementById('instructor-' + card.dataset.instructor);
+            if (modal) modal.showModal();
+          });
+        });
+
+        modals.forEach(function (modal) {
+          var closeBtn = modal.querySelector('.instructor-modal-close');
+          if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+              modal.close();
+            });
+          }
+          modal.addEventListener('click', function (event) {
+            if (event.target === modal) modal.close();
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
