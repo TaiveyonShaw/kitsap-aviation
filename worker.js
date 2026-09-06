@@ -24,12 +24,29 @@ function decodeJwtJson(part) {
   return JSON.parse(new TextDecoder().decode(b64urlToBytes(part)));
 }
 
+function normalizeTeamDomain(value) {
+  return String(value || '')
+    .trim()
+    .replace(/^https?:\/\//i, '')
+    .replace(/\/+$/, '');
+}
+
+function unauthorized(reason) {
+  return json({ error: 'Unauthorized', reason: reason }, 401);
+}
+
 function getAccessToken(request) {
   var header = request.headers.get('Cf-Access-Jwt-Assertion');
-  if (header) return header;
+  if (header) return header.trim();
   var cookie = request.headers.get('Cookie') || '';
   var match = cookie.match(/(?:^|;\s*)CF_Authorization=([^;]+)/);
-  return match ? decodeURIComponent(match[1]) : '';
+  if (!match) return '';
+  var raw = match[1].trim().replace(/^"|"$/g, '');
+  try {
+    return decodeURIComponent(raw);
+  } catch (error) {
+    return raw;
+  }
 }
 
 async function getJwks(teamDomain) {
@@ -43,8 +60,8 @@ async function getJwks(teamDomain) {
 }
 
 async function verifyAccessJwt(request, env) {
-  var teamDomain = env.CF_ACCESS_TEAM_DOMAIN;
-  var audience = env.CF_ACCESS_AUD;
+  var teamDomain = normalizeTeamDomain(env.CF_ACCESS_TEAM_DOMAIN);
+  var audience = String(env.CF_ACCESS_AUD || '').trim();
   if (!teamDomain || !audience) {
     return json({
       error: 'Access is not configured',
@@ -53,10 +70,10 @@ async function verifyAccessJwt(request, env) {
   }
 
   var token = getAccessToken(request);
-  if (!token) return json({ error: 'Unauthorized' }, 401);
+  if (!token) return unauthorized('missing_token');
 
   var parts = token.split('.');
-  if (parts.length !== 3) return json({ error: 'Unauthorized' }, 401);
+  if (parts.length !== 3) return unauthorized('malformed_token');
 
   var header;
   var payload;
@@ -64,18 +81,18 @@ async function verifyAccessJwt(request, env) {
     header = decodeJwtJson(parts[0]);
     payload = decodeJwtJson(parts[1]);
   } catch (error) {
-    return json({ error: 'Unauthorized' }, 401);
+    return unauthorized('malformed_token');
   }
 
-  if (payload.iss !== 'https://' + teamDomain) return json({ error: 'Unauthorized' }, 401);
+  if (payload.iss !== 'https://' + teamDomain) return unauthorized('issuer_mismatch');
   var aud = payload.aud;
   var audOk = Array.isArray(aud) ? aud.indexOf(audience) !== -1 : aud === audience;
-  if (!audOk) return json({ error: 'Unauthorized' }, 401);
-  if (!payload.exp || payload.exp * 1000 < Date.now()) return json({ error: 'Unauthorized' }, 401);
+  if (!audOk) return unauthorized('aud_mismatch');
+  if (!payload.exp || payload.exp * 1000 < Date.now()) return unauthorized('expired');
 
   var keys = await getJwks(teamDomain);
   var jwk = keys.filter(function (key) { return key.kid === header.kid; })[0];
-  if (!jwk) return json({ error: 'Unauthorized' }, 401);
+  if (!jwk) return unauthorized('unknown_key');
 
   var cryptoKey = await crypto.subtle.importKey(
     'jwk',
@@ -86,7 +103,7 @@ async function verifyAccessJwt(request, env) {
   );
   var data = new TextEncoder().encode(parts[0] + '.' + parts[1]);
   var ok = await crypto.subtle.verify('RSASSA-PKCS1-v1_5', cryptoKey, b64urlToBytes(parts[2]), data);
-  if (!ok) return json({ error: 'Unauthorized' }, 401);
+  if (!ok) return unauthorized('bad_signature');
   return null;
 }
 

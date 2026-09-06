@@ -161,7 +161,18 @@
               return;
             }
             if (result.status === 401) {
-              showStatus('Cloudflare Access session expired. Refresh and sign in, then save.', true);
+              var reason = result.data && result.data.reason;
+              if (reason === 'aud_mismatch') {
+                showStatus('Access AUD does not match this login. Copy the Application Audience tag from the same Access app that protects /admin.html.', true);
+              } else if (reason === 'issuer_mismatch') {
+                showStatus('Access team domain does not match this login. Set CF_ACCESS_TEAM_DOMAIN to taiveyon-dev.cloudflareaccess.com with no https://.', true);
+              } else if (reason === 'expired') {
+                showStatus('Cloudflare Access session expired. Refresh and sign in, then save.', true);
+              } else if (reason === 'missing_token' || reason === 'malformed_token') {
+                showStatus('Save did not receive a valid Access cookie. Refresh /admin.html, sign in, then save.', true);
+              } else {
+                showStatus('Cloudflare Access could not verify this login (' + (reason || 'unauthorized') + ').', true);
+              }
               return;
             }
             if (result.status === 0 || result.status === 404) {
