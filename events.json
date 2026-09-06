@@ -1,0 +1,35 @@
+[
+  {
+    "id": "discovery-2026-09-12",
+    "title": "Discovery Flight Saturday",
+    "date": "2026-09-12",
+    "startTime": "09:00",
+    "endTime": "17:00",
+    "location": "Bremerton National Airport (KPWT)",
+    "description": "Take the controls with an instructor on a one-hour intro flight. No experience needed — a great first look at training at Kitsap Aviation.",
+    "linkText": "Reserve a spot",
+    "linkHref": "contact.html?interest=Upcoming+Event"
+  },
+  {
+    "id": "info-night-2026-10-08",
+    "title": "Private Pilot Info Night",
+    "date": "2026-10-08",
+    "startTime": "18:30",
+    "endTime": "20:00",
+    "location": "Kitsap Aviation office",
+    "description": "Walk through the path to a Private Pilot Certificate, training timeline, costs, and how to get started. Q&A with our instructors.",
+    "linkText": "RSVP",
+    "linkHref": "contact.html?interest=Upcoming+Event"
+  },
+  {
+    "id": "youth-2026-11-07",
+    "title": "Youth Aviation Day",
+    "date": "2026-11-07",
+    "startTime": "10:00",
+    "endTime": "16:00",
+    "location": "Bremerton National Airport (KPWT)",
+    "description": "A family-friendly day on the ramp for students and parents interested in flying. Meet instructors, see the aircraft, and learn about scholarships and youth programs.",
+    "linkText": "Learn more",
+    "linkHref": "contact.html?interest=Upcoming+Event"
+  }
+]

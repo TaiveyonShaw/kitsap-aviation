@@ -1,0 +1,16 @@
+name = "kitsap-aviation"
+main = "worker.js"
+compatibility_date = "2026-09-06"
+
+[assets]
+directory = "."
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+[[kv_namespaces]]
+binding = "EVENTS"
+id = "18eb6ffafefb4b91ba8ee468a701bbc4"
+
+# Still set in Cloudflare dashboard:
+# - CF_ACCESS_TEAM_DOMAIN  e.g. yourteam.cloudflareaccess.com
+# - CF_ACCESS_AUD          Application Audience tag from Access

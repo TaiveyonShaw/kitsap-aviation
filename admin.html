@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Events Admin - Kitsap Aviation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" type="image/png" href="img/kitsap-aviation-icon.jpg">
+  </head>
+
+  <body>
+    <nav>
+      <div class="logo">
+        <a href="index.html" class="logo-link">
+          <img class="logo-icon" src="img/kitsap-aviation-icon.jpg" alt="icon">
+          <span>Kitsap Aviation</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">View site</a></li>
+      </ul>
+    </nav>
+
+    <div class="admin-page">
+      <section class="admin-app" id="admin-app">
+        <div class="admin-header">
+          <div>
+            <div class="section-label">Staff only</div>
+            <h1 class="section-title">Upcoming <em>events</em></h1>
+            <p class="section-sub">Cloudflare Access protects this page. Save publishes events to the live homepage.</p>
+          </div>
+          <div class="admin-actions-primary">
+            <button class="btn-primary" type="button" id="add-event">Add event</button>
+            <button class="btn-primary" type="button" id="save-events">Save</button>
+            <button class="btn-primary" type="button" id="clear-draft">Reset to file</button>
+          </div>
+        </div>
+        <p class="admin-status" id="admin-status" hidden></p>
+        <div class="admin-list" id="admin-list"></div>
+      </section>
+    </div>
+
+    <template id="event-editor-template">
+      <article class="admin-event-card">
+        <div class="admin-event-top">
+          <strong class="admin-event-label">Event</strong>
+          <button class="admin-delete" type="button">Remove</button>
+        </div>
+        <div class="admin-grid">
+          <div class="form-row admin-span-2">
+            <label>Title</label>
+            <input type="text" name="title" required placeholder="Discovery Flight Saturday">
+          </div>
+          <div class="form-row">
+            <label>Date</label>
+            <input type="date" name="date" required>
+          </div>
+          <div class="form-row">
+            <label>Start time</label>
+            <input type="time" name="startTime" required>
+          </div>
+          <div class="form-row">
+            <label>End time</label>
+            <input type="time" name="endTime" required>
+          </div>
+          <div class="form-row admin-span-2">
+            <label>Location</label>
+            <input type="text" name="location" placeholder="Bremerton National Airport (KPWT)">
+          </div>
+          <div class="form-row admin-span-2">
+            <label>Description</label>
+            <textarea name="description" rows="3" placeholder="What visitors should know."></textarea>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="js/events.js"></script>
+    <script>
+      (function () {
+        var list = document.getElementById('admin-list');
+        var statusEl = document.getElementById('admin-status');
+        var template = document.getElementById('event-editor-template');
+        var events = [];
+
+        function showStatus(message, isError) {
+          statusEl.hidden = false;
+          statusEl.textContent = message;
+          statusEl.classList.toggle('is-error', !!isError);
+        }
+
+        function createCard(event) {
+          var node = template.content.firstElementChild.cloneNode(true);
+          node.dataset.id = event.id || '';
+          node.querySelector('[name="title"]').value = event.title || '';
+          node.querySelector('[name="date"]').value = event.date || '';
+          node.querySelector('[name="startTime"]').value = event.startTime || '';
+          node.querySelector('[name="endTime"]').value = event.endTime || '';
+          node.querySelector('[name="location"]').value = event.location || '';
+          node.querySelector('[name="description"]').value = event.description || '';
+          node.querySelector('.admin-delete').addEventListener('click', function () {
+            node.remove();
+          });
+          return node;
+        }
+
+        function renderEditors() {
+          list.innerHTML = '';
+          KitsapEvents.sort(events).forEach(function (event) {
+            list.appendChild(createCard(event));
+          });
+        }
+
+        function collectEvents() {
+          return Array.from(list.querySelectorAll('.admin-event-card')).map(function (card) {
+            return {
+              id: card.dataset.id || 'event-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+              title: card.querySelector('[name="title"]').value.trim(),
+              date: card.querySelector('[name="date"]').value,
+              startTime: card.querySelector('[name="startTime"]').value,
+              endTime: card.querySelector('[name="endTime"]').value,
+              location: card.querySelector('[name="location"]').value.trim(),
+              description: card.querySelector('[name="description"]').value.trim(),
+              linkText: 'RSVP',
+              linkHref: 'contact.html?interest=Upcoming+Event'
+            };
+          }).filter(function (event) {
+            return event.title && event.date;
+          });
+        }
+
+        KitsapEvents.load().then(function (data) {
+          events = data;
+          renderEditors();
+          if (KitsapEvents.hasLocalDraft()) {
+            showStatus('Showing a local draft. Press Save to publish it to the live site.');
+          }
+        });
+
+        document.getElementById('add-event').addEventListener('click', function () {
+          list.prepend(createCard({
+            id: 'event-' + Date.now()
+          }));
+        });
+
+        document.getElementById('save-events').addEventListener('click', function () {
+          events = collectEvents();
+          KitsapEvents.save(events);
+          showStatus('Publishing events…');
+          KitsapEvents.saveLive(events).then(function (result) {
+            if (result.ok) {
+              showStatus('Saved. The live homepage will show these events.');
+              return;
+            }
+            if (result.status === 503) {
+              showStatus((result.data && result.data.message) || 'Finish Cloudflare Access and KV setup, then save again.', true);
+              return;
+            }
+            if (result.status === 401) {
+              showStatus('Cloudflare Access session expired. Refresh and sign in, then save.', true);
+              return;
+            }
+            if (result.status === 0 || result.status === 404) {
+              showStatus('No live API on this server. Saved on this computer only. After Cloudflare deploy, Save will publish.');
+              return;
+            }
+            showStatus((result.data && result.data.error) || 'Could not publish events.', true);
+          });
+        });
+
+        document.getElementById('clear-draft').addEventListener('click', function () {
+          KitsapEvents.clearLocal();
+          KitsapEvents.load().then(function (data) {
+            events = data;
+            renderEditors();
+            showStatus('Local draft cleared. Showing events from the site.');
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

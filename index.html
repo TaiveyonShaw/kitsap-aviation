@@ -21,7 +21,9 @@
       <ul class="nav-links">
         <li><a href="#instructors">Instructors</a></li>
         <li><a href="#programs">Programs</a></li>
+        <li><a href="#events">Events</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="admin.html">Admin</a></li>
       </ul>
     </nav>
 
@@ -155,6 +157,14 @@
       </div>
     </dialog>
 
+    <div class="main-section" id="events">
+      <div class="section-label">Upcoming events</div>
+      <div class="section-title">Come fly with <em>us</em></div>
+      <p class="section-sub">Join us at Bremerton National Airport for intro flights, info nights, and community aviation events.</p>
+      <div class="events-list" id="events-list"></div>
+      <p class="events-empty" id="events-empty" hidden>No upcoming events right now. Check back soon, or <a href="contact.html">reach out</a> to schedule a discovery flight.</p>
+    </div>
+
     <div class="cta-section">
       <div class="section-label">Ready to begin?</div>
       <h2>Your first flight is <em style="font-family:Lora, serif; font-style: italic; color:#f5d98a;">closer than you think</em></h2>
@@ -211,6 +221,7 @@
       </div>
     </footer>
 
+    <script src="js/events.js"></script>
     <script>
       (function () {
         var cards = document.querySelectorAll('[data-instructor]');
@@ -233,6 +244,14 @@
           modal.addEventListener('click', function (event) {
             if (event.target === modal) modal.close();
           });
+        });
+
+        KitsapEvents.load().then(function (events) {
+          KitsapEvents.render(
+            events,
+            document.getElementById('events-list'),
+            document.getElementById('events-empty')
+          );
         });
       })();
     </script>
