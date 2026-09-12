@@ -12,98 +12,122 @@
     <link rel="icon" type="image/png" href="img/kitsap-aviation-icon.jpg">
   </head>
 
-  <body>
-    <nav>
-      <div class="logo">
-        <img class="logo-icon" src="img/kitsap-aviation-icon.jpg" alt="icon">
+  <body class="home-refresh">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <nav class="site-nav">
+      <a href="index.html" class="logo-link">
+        <img class="logo-icon" src="img/kitsap-aviation-icon.jpg" alt="">
         <span>Kitsap Aviation</span>
-      </div>
-      <ul class="nav-links">
+      </a>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="#programs">Training</a></li>
         <li><a href="#instructors">Instructors</a></li>
-        <li><a href="#programs">Programs</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="admin.html">Admin</a></li>
+        <li class="nav-links-phone"><a href="tel:+13607200904">(360) 720-0904</a></li>
       </ul>
+      <div class="nav-actions">
+        <a class="nav-cta" href="#discovery">Discovery flights</a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+        </button>
+      </div>
     </nav>
 
-    <div class="hero">
-      <div class="hero-grid-bg"></div>
-      <h1>
-        <span class="hero-title-line">Where the Sky Stops</span>
-        <span class="hero-title-line">Being The <span>Limit</span></span>
-      </h1>
-      <p>Professional flight training from start to finish. Train with the best instructors in the PNW.</p>
-      <div class="hero-btns">
-        <a class="btn-primary" href="contact.html">Start your training</a>
-        <a class="btn-outline" href="#programs">View programs</a>
+    <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="hero-kicker"><span aria-hidden="true"></span>Bremerton, Washington · KPWT</div>
+        <h1 id="hero-title"><span class="hero-title-line">Your first flight.</span><span class="hero-title-line">A whole new</span><span class="hero-title-line"><em>perspective.</em></span></h1>
+        <p>Learn to fly in the place we call home. Personal flight instruction above the waters, islands, and mountains of the Pacific Northwest.</p>
+        <div class="hero-btns"><a class="btn-primary" href="#discovery">Explore a discovery flight <span aria-hidden="true">↗</span></a><a class="btn-outline" href="#programs">View training</a></div>
       </div>
-    </div>
+      <div class="hero-footnote"><span>THE PACIFIC NORTHWEST, FROM ABOVE</span><span>Based at Bremerton National Airport</span></div>
+    </section>
 
-    <div class="main-section" id="programs">
-      <div class="section-label">Training programs</div>
-      <div class="section-title">A path for every <em>aviator</em></div>
-      <p class="section-sub">From your first discovery flight to advanced ratings - we have a structured program designed for your goals.</p>
-      <div class="programs-grid">
-        <div class="program-card program-card-featured">
-          <span class="program-icon">🔭</span>
-          <h3>Discovery Flight</h3>
-          <p>Never flown before? Take the controls with an instructor for a one-hour intro flight. No experience needed.</p>
-          <a class="btn-signup" href="contact.html?interest=Discovery+Flight">Sign-up now</a>
-        </div>
-        <div class="program-card">
-          <span class="program-icon">🛩</span>
-          <h3>Private Pilot</h3>
-          <p>Your foundation. Learn to fly solo and earn your PPL with day, night, and cross-country proficiency.</p>
-          <span class="program-tag">Beginner → PPL</span>
-        </div>
-        <div class="program-card">
-          <span class="program-icon">🧭</span>
-          <h3>Instrument Rating</h3>
-          <p>Fly through clouds and low-visibility conditions with full IFR certification.</p>
-          <span class="program-tag">PPL → IR</span>
-        </div>
-        <div class="program-card">
-          <span class="program-icon">✈️</span>
-          <h3>Commercial Pilot</h3>
-          <p>Build hours, sharpen precision, and earn the certificate that opens the door to a professional aviation career.</p>
-          <span class="program-tag">IR → CPL</span>
-        </div>
-        <div class="program-card">
-          <span class="program-icon">🎓</span>
-          <h3>CFI / CFII</h3>
-          <p>Become a certified flight instructor. Share your passion and build hours teaching the next generation.</p>
-          <span class="program-tag">CPL → CFI</span>
-        </div>
-      </div>
+    <div class="proof-strip"><div class="proof-strip-inner"><div class="proof-item"><strong>Rooted in Kitsap</strong><span>Bremerton, Washington</span></div><div class="proof-item"><strong>Personal instruction</strong><span>From your first flight to your next rating</span></div><div class="proof-item"><strong>A new point of view</strong><span>Discover the Pacific Northwest from above</span></div></div></div>
+
+    <section class="main-section discovery-section" id="discovery" aria-labelledby="discovery-title">
+      <div class="discovery-copy"><div class="section-label">01 / Take the first step</div><h2 class="section-title" id="discovery-title">You've looked up.<br>Now <em>come fly.</em></h2><p class="section-sub">You don't need a license, a plan, or any flight experience. Just a little curiosity. A discovery flight is your introduction to the world on the other side of the windshield.</p><a class="discovery-link" href="contact.html?interest=Discovery+Flight">Let's plan your first flight <span aria-hidden="true">↗</span></a></div>
+      <div class="flight-note"><div class="flight-note-top"><span>Your introduction to aviation</span><span>KPWT</span></div><h3>The discovery flight</h3><p>A one-hour introductory flight with an instructor. A new view of home. And a chance to see where flying could take you.</p><ol class="discovery-steps"><li><span>01</span><div><strong>Meet your instructor</strong><p>Ask questions and get comfortable with the airplane.</p></div></li><li><span>02</span><div><strong>Take to the sky</strong><p>Experience the controls with an instructor by your side.</p></div></li><li><span>03</span><div><strong>Find your next step</strong><p>Talk about your goals and what learning to fly could look like.</p></div></li></ol><a class="btn-primary" href="contact.html?interest=Discovery+Flight">Ask about a discovery flight <span aria-hidden="true">↗</span></a><span class="flight-note-footer">No experience needed. Your journey starts here.</span></div>
+    </section>
+
+    <div class="main-section training-section" id="programs">
+      <div class="section-label">02 / Choose your flight path</div>
+      <h2 class="section-title">A little curiosity.<br>A <em>world of possibility.</em></h2>
+      <p class="section-sub">Start with the fundamentals. Build your confidence. Keep going as far as you want to fly.</p>
+
+      <ol class="training-path">
+        <li>
+          <span class="path-mark">PPL</span>
+          <div>
+            <h3>Private Pilot</h3>
+            <p>Your foundation. Learn to fly solo and earn your PPL with day, night, and cross-country proficiency.</p>
+            <span class="program-tag">Beginner → PPL</span>
+            <a class="training-link" href="contact.html?interest=Private+Pilot">Explore private training <span aria-hidden="true">↗</span></a>
+          </div>
+        </li>
+        <li>
+          <span class="path-mark">IR</span>
+          <div>
+            <h3>Instrument Rating</h3>
+            <p>Fly through clouds and low-visibility conditions with full IFR certification.</p>
+            <span class="program-tag">PPL → IR</span>
+            <a class="training-link" href="contact.html?interest=Instrument+Rating">Explore instrument training <span aria-hidden="true">↗</span></a>
+          </div>
+        </li>
+        <li>
+          <span class="path-mark">CPL</span>
+          <div>
+            <h3>Commercial Pilot</h3>
+            <p>Build hours, sharpen precision, and earn the certificate that opens the door to a professional aviation career.</p>
+            <span class="program-tag">IR → CPL</span>
+            <a class="training-link" href="contact.html?interest=Commercial+Pilot">Explore commercial training <span aria-hidden="true">↗</span></a>
+          </div>
+        </li>
+        <li>
+          <span class="path-mark">CFI</span>
+          <div>
+            <h3>CFI / CFII</h3>
+            <p>Become a certified flight instructor. Share your passion and build hours teaching the next generation.</p>
+            <span class="program-tag">CPL → CFI</span>
+            <a class="training-link" href="contact.html?interest=CFI+%2F+CFII">Explore instructor training <span aria-hidden="true">↗</span></a>
+          </div>
+        </li>
+      </ol>
     </div>
 
     <div class="alt-bg" id="instructors">
       <div class="main-section">
-        <div class="section-label">Our instructors</div>
-        <div class="section-title">Fly with the <em>best</em></div>
-        <p class="section-sub">Our team of flight instructors has over 25 years of experience that is all dedicated to your success.</p>
+        <div class="section-label">03 / People who love to fly</div>
+        <h2 class="section-title">Good pilots start with<br><em>great teachers.</em></h2>
+        <p class="section-sub">Get to know the people in your right seat. Experienced instructors, a personal approach, and a shared love of flying.</p>
         <div class="instructors-grid">
           <button type="button" class="instructor-card" data-instructor="kris" aria-haspopup="dialog" aria-controls="instructor-kris">
             <picture>
               <source srcset="img/instructor1.webp" type="image/webp">
               <img class="instructor-photo" src="img/instructor1.jpeg" alt="" width="600" height="800" loading="lazy" decoding="async">
             </picture>
-            <div class="instructor-name">Kris Jones</div>
-            <div class="instructor-role">Owner - Chief Flight Instructor</div>
-            <div class="instructor-certs">CFI / CFII / MEI</div>
-            <div class="instructor-hours">ATP - MEL - B - 737</div>
-            <span class="instructor-view">View bio</span>
+            <div class="instructor-body">
+              <div class="instructor-name">Kris Jones</div>
+              <div class="instructor-role">Owner - Chief Flight Instructor</div>
+              <div class="instructor-certs">CFI / CFII / MEI · ATP · MEL · B-737</div>
+              <p class="instructor-proof">U.S. Navy officer with 2,500 hours and a B-737 type. Chief instructor for the oldest continuously operating flying club in the United States.</p>
+              <span class="instructor-view">View bio</span>
+            </div>
           </button>
           <button type="button" class="instructor-card" data-instructor="dylan" aria-haspopup="dialog" aria-controls="instructor-dylan">
             <picture>
               <source srcset="img/instructor2.webp" type="image/webp">
               <img class="instructor-photo" src="img/instructor2.jpeg" alt="" width="600" height="800" loading="lazy" decoding="async">
             </picture>
-            <div class="instructor-name">Dylan Michael</div>
-            <div class="instructor-role">Flight Instructor</div>
-            <div class="instructor-certs">CFI / CFII</div>
-            <span class="instructor-view">View bio</span>
+            <div class="instructor-body">
+              <div class="instructor-name">Dylan Michael</div>
+              <div class="instructor-role">Flight Instructor</div>
+              <div class="instructor-certs">CFI / CFII</div>
+              <p class="instructor-proof">Kitsap local. Earned his ratings through CFII at the Alaska/Horizon Ascend Pilot Academy, then came home to instruct.</p>
+              <span class="instructor-view">View bio</span>
+            </div>
           </button>
         </div>
       </div>
@@ -158,8 +182,8 @@
     </dialog>
 
     <div class="main-section" id="events">
-      <div class="section-label">Upcoming events</div>
-      <div class="section-title">Come fly with <em>us</em></div>
+      <div class="section-label">04 / Around the airfield</div>
+      <h2 class="section-title">More than lessons.<br>A <em>flying community.</em></h2>
       <p class="section-sub">Join us at Bremerton National Airport for intro flights, info nights, and community aviation events.</p>
       <div class="events-list" id="events-list"></div>
       <p class="events-empty" id="events-empty" hidden>No upcoming events right now. Check back soon, or <a href="contact.html">reach out</a> to schedule a discovery flight.</p>
@@ -167,18 +191,19 @@
 
     <div class="cta-section">
       <div class="section-label">Ready to begin?</div>
-      <h2>Your first flight is <em style="font-family:Lora, serif; font-style: italic; color:#f5d98a;">closer than you think</em></h2>
+      <h2>Ready to take the <em>left seat?</em></h2>
       <p>Schedule a discovery flight or reach out to talk about the best path for your goals.</p>
       <div class="cta-btns">
         <a class="btn-primary-inv" href="contact.html?interest=Discovery+Flight">Book a discovery flight</a>
       </div>
     </div>
+    </main>
 
     <footer>
       <div class="footer-inner">
         <div class="footer-brand">
           <div class="footer-logo">
-            <img class="logo-icon" src="img/kitsap-aviation-icon.jpg" alt="icon">
+            <img class="logo-icon" src="img/kitsap-aviation-icon.jpg" alt="">
             <span>Kitsap Aviation</span>
           </div>
           <p>Based at Bremerton National Airport (KPWT)</p>
@@ -221,6 +246,7 @@
       </div>
     </footer>
 
+    <script src="js/nav.js"></script>
     <script src="js/events.js"></script>
     <script>
       (function () {
