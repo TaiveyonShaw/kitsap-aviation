@@ -966,3 +966,74 @@ footer { background: #12202f; border-top: 1px solid rgba(255,255,255,0.06); padd
     .admin-grid { grid-template-columns: 1fr; }
 }
 
+.nav-toggle { display: none; }
+
+@media (max-width: 900px) {
+    .main-section[id], .alt-bg[id] { scroll-margin-top: 5rem; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    nav { padding: .65rem 1.25rem; gap: .75rem; }
+    .logo { font-size: .85rem; letter-spacing: .04em; min-width: 0; }
+    .logo-icon { flex-shrink: 0; }
+    .site-nav { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+    .site-nav > .logo { grid-column: 1; grid-row: 1; }
+    .site-nav .logo-link { min-height: 44px; }
+    .site-nav .nav-links { grid-column: 1 / -1; flex-wrap: wrap; gap: .5rem 1.25rem; }
+    .site-nav .nav-links a { display: flex; align-items: center; min-height: 44px; font-size: 1rem; padding: .6rem .25rem; }
+    .site-nav.nav-ready .nav-toggle { display: flex; grid-column: 2; grid-row: 1; align-items: center; justify-content: flex-end; gap: .5rem; min-width: 84px; min-height: 44px; padding: .5rem 0 .5rem .65rem; border: 0; border-radius: 4px; background: transparent; color: var(--navy); font: inherit; font-size: .85rem; line-height: 1; cursor: pointer; align-self: center; }
+    .nav-toggle-label { line-height: 1.25; }
+    .nav-toggle-icon { display: inline-flex; align-items: center; justify-content: center; width: 1.25rem; height: 1.25rem; font-size: 1.25rem; line-height: 1; }
+    .site-nav.nav-ready .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 0; padding: .5rem 1.25rem 1rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-card); max-height: calc(100vh - 76px); max-height: calc(100dvh - 76px); overflow-y: auto; box-shadow: 0 12px 20px #12202f18; }
+    .site-nav.nav-ready.is-open .nav-links { display: flex; }
+    .hero { padding: 3.5rem 1.5rem; }
+    .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
+    .main-section { padding: 3.5rem 1.5rem; }
+    .section-sub, .program-card p, .program-card-featured p, .contact-intro, .instructor-modal-bio p { font-size: 1rem; }
+    .program-card h3 { font-size: 1.1rem; }
+    .program-tag, .instructor-certs, .instructor-hours, .instructor-view, .event-meta { font-size: .85rem; }
+    .instructor-name { font-size: 1.1rem; }
+    .instructor-role { font-size: .9rem; }
+    .event-body p:not(.event-meta) { font-size: 1rem; }
+    .event-link { display: inline-flex; align-items: center; min-height: 44px; font-size: .85rem; }
+    .btn-primary, .btn-outline, .btn-primary-inv, .program-card-featured .btn-signup { min-height: 48px; display: inline-flex; justify-content: center; align-items: center; }
+    .cta-section { padding: 3.5rem 1.5rem; }
+    .instructor-modal { max-width: calc(100vw - 1rem); max-height: calc(100vh - 1rem); max-height: calc(100dvh - 1rem); }
+    .instructor-modal-panel { display: block; max-height: calc(100vh - 1rem); max-height: calc(100dvh - 1rem); overflow-y: auto; overscroll-behavior: contain; padding: .75rem 1.25rem 1.5rem; }
+    .instructor-modal-close { position: sticky; display: block; top: 0; margin-left: auto; margin-bottom: .5rem; width: 44px; height: 44px; background: var(--bg-card); z-index: 1; }
+    .instructor-modal-header { margin-bottom: 1.25rem; }
+    .instructor-modal-photo { width: 120px; height: 120px; }
+    .instructor-modal-bio { overflow: visible; }
+    .contact-form input:not([type="hidden"]), .contact-form select, .contact-form textarea, .admin-event-card input, .admin-event-card textarea { font-size: 1rem; min-height: 48px; }
+    .contact-form .form-row label { font-size: .9rem; }
+    .admin-delete { min-height: 44px; }
+    footer { padding: 2.5rem 1.25rem; }
+    .footer-inner { column-gap: 1.5rem; }
+    .footer-brand, .footer-col { min-width: 0; max-width: 100%; }
+    .footer-contact-item dd { overflow-wrap: anywhere; }
+    .footer-contact-item dd a { display: inline-block; padding-block: .5rem; min-height: 44px; }
+}
+
+@media (max-width: 600px) {
+    .hero { padding: 2.75rem 1.25rem; }
+    .hero h1 { font-size: clamp(1.9rem, 7vw, 2.6rem); margin-bottom: 1.5rem; }
+    .hero p { font-size: 1rem; margin-bottom: 1.75rem; }
+    .hero-btns { width: 100%; max-width: 360px; flex-direction: column; }
+    .hero-btns a { width: 100%; padding-inline: .75rem; }
+    .main-section { padding: 3rem 1.25rem; }
+    .programs-grid, .instructors-grid { grid-template-columns: minmax(0, 1fr); margin-top: 2rem; }
+    .program-card, .program-card-featured { padding: 1.5rem 1.25rem; }
+    .program-card-featured .btn-signup { white-space: normal; }
+    .section-label { font-size: .75rem; }
+    .contact-page { padding: 2.5rem 1.25rem 3rem; }
+    .contact-layout { gap: 2rem; }
+    .contact-form-panel { padding: 1.25rem; }
+    .contact-form-note { font-size: .9rem; }
+    .footer-logo { font-size: .85rem; }
+    .admin-page { padding: 2.5rem 1.25rem; }
+    .admin-event-card { padding: 1.25rem 1rem; }
+}
+
+@media (max-width: 900px) and (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+

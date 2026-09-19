@@ -13,12 +13,13 @@
   </head>
 
   <body>
-    <nav>
+    <nav class="site-nav" aria-label="Main navigation">
       <div class="logo">
         <img class="logo-icon" src="img/kitsap-aviation-icon.jpg" alt="icon">
         <span>Kitsap Aviation</span>
       </div>
-      <ul class="nav-links">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu"><span class="nav-toggle-label">Menu</span><span class="nav-toggle-icon" aria-hidden="true">☰</span></button>
+      <ul class="nav-links" id="nav-menu">
         <li><a href="#instructors">Instructors</a></li>
         <li><a href="#programs">Programs</a></li>
         <li><a href="#events">Events</a></li>
@@ -221,6 +222,7 @@
       </div>
     </footer>
 
+    <script src="js/nav.js"></script>
     <script src="js/events.js"></script>
     <script>
       (function () {
